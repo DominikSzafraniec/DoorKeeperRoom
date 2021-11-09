@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DoorKeeperRoom"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Portiernia" Height="600" Width="800">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Height="38" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Button FontSize="18" Margin="10 0 10 0" Width="250" Content="Wydawanie kluczy" Command="{Binding UpdateViewCommand}" CommandParameter="Handing"/>
+            <Button FontSize="18" Margin="10 0 10 0" Width="250" Content="Zarządzanie pracownikami" Command="{Binding UpdateViewCommand}" CommandParameter="Workers"/>
+            <Button FontSize="18" Margin="10 0 10 0" Width="250" Content="Zarządzanie kluczami" Command="{Binding UpdateViewCommand}" CommandParameter="Keys"/>
+        </StackPanel>
+        <ContentControl Grid.Row="1" Content="{Binding SelectedViewModel}"/>
     </Grid>
 </Window>
