@@ -1,4 +1,5 @@
 ﻿using DoorKeeperRoom.Commands;
+using DoorKeeperRoom.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace DoorKeeperRoom.ViewModels
 		public MainViewModel()
 		{
 			UpdateViewCommand = new UpdateViewCommand(this);
+
 		}
 	}
 }

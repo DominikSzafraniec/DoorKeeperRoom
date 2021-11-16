@@ -1,12 +1,25 @@
-﻿<UserControl x:Class="DoorKeeperRoom.Views.WorkersView"
+﻿<UserControl
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DoorKeeperRoom.Views"
+        xmlns:DoorKeeperRoom="clr-namespace:DoorKeeperRoom" xmlns:Models="clr-namespace:DoorKeeperRoom.Models" x:Class="DoorKeeperRoom.Views.WorkersView"
         mc:Ignorable="d"
         d:DesignHeight="450" d:DesignWidth="800" Background="White">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="workersViewSource" d:DesignSource="{d:DesignInstance {x:Type Models:workers}, CreateList=True}"/>
+    </UserControl.Resources>
     <StackPanel>
-        <Label FontSize="20" HorizontalAlignment="Center">Panel zarządzania pracownikami</Label>
+        <Label FontSize="20" HorizontalAlignment="Center" Content="Panel zarządzania pracownikami"/>
+        <DataGrid x:Name="workersDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Height="149" ItemsSource="{Binding Source={StaticResource workersViewSource}}" Margin="187,0,253,0" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="departmentColumn" Binding="{Binding department}" Header="department" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="id_workerColumn" Binding="{Binding id_worker}" Header="id worker" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="lastnameColumn" Binding="{Binding lastname}" Header="lastname" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding name}" Header="name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="positionColumn" Binding="{Binding position}" Header="position" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </StackPanel>
 </UserControl>
