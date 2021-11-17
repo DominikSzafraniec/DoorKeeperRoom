@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="83da5dd04d97444ba300c30ea31fe1df" Name="Diagram1">
-        <EntityTypeShape EntityType="DoorKeeperRoom_DBModel2.key_handing" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoorKeeperRoom_DBModel2.key_handing" Width="1.5" PointX="3.125" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DoorKeeperRoom_DBModel2.keys" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DoorKeeperRoom_DBModel2.workers" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
         <AssociationConnector Association="DoorKeeperRoom_DBModel2.FK__key_handi__id_ke__30F848ED" ManuallyRouted="false" />

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DoorKeeperRoom.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,21 +21,21 @@ namespace DoorKeeperRoom.Views
 	/// </summary>
 	public partial class KeysView : UserControl
 	{
-		public KeysView()
-		{
-			InitializeComponent();
-		}
+		private DoorKeeperRoom_DBConnection dataEntities = new DoorKeeperRoom_DBConnection();
+		CollectionViewSource kViewSource;
+
 
 		private void UserControl_Loaded(object sender, RoutedEventArgs e)
 		{
-
-			// Nie ładuj danych w czasie projektowania.
-			// if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
-			// {
-			// 	//Tu załaduj swoje dane i przypisz wynik do CollectionViewSource.
-			// 	System.Windows.Data.CollectionViewSource myCollectionViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["Resource Key for CollectionViewSource"];
-			// 	myCollectionViewSource.Source = your data
-			// }
+			dataEntities.keys.Load();
+			kViewSource.Source = dataEntities.keys.Local;
 		}
+		public KeysView()
+		{
+			InitializeComponent();
+			kViewSource = (CollectionViewSource)FindResource("keysViewSource");
+			DataContext = this;
+		}
+
 	}
 }

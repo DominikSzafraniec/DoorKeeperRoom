@@ -26,8 +26,8 @@ namespace DoorKeeperRoom.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-GJU1SGI\\SQLEXPRESS;Initial Catalog=DoorKeeperRoom_DB;Integrat" +
-            "ed Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(DESKTOP-GJU1SGI)\\SQLEXPRESS;Initial Catalog=DoorKeeperRoom_DB;Integr" +
+            "ated Security=True")]
         public string DoorKeeperRoom_DBConnectionString {
             get {
                 return ((string)(this["DoorKeeperRoom_DBConnectionString"]));

@@ -8,27 +8,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Prism.Commands;
+using System.ComponentModel;
 
 namespace DoorKeeperRoom.ViewModels
 {
 	public class HandingViewModel : BaseViewModel
 	{
 		DoorKeeperRoom_DBConnection dataEntities { get; set; } = new DoorKeeperRoom_DBConnection();
-		HandingView handingView = new HandingView();
 
-		public ICommand DeleteFromKeyHandingCommand { get; set; }
-
-		public void HandingViewGetData()
+		private DelegateCommand<key_handing> _deleteHKCommand;
+		public DelegateCommand<key_handing> DeleteHKCommand => 
+			_deleteHKCommand ?? (_deleteHKCommand = new DelegateCommand<key_handing>(ExecuteDeleteHKCommand));
+		
+		void ExecuteDeleteHKCommand(key_handing parameter)
 		{
-			var query =
-			from keyhanding in dataEntities.key_handing
-			select new { keyhanding.id, keyhanding.id_worker, keyhanding.id_key,keyhanding.handing_date,keyhanding.return_date };
-			handingView.key_handingListView.ItemsSource = query.ToList();
-
+			dataEntities.key_handing.Remove(parameter);	
+			dataEntities.SaveChanges();
 		}
 		public HandingViewModel()
 		{
-			DeleteFromKeyHandingCommand = new DeleteFromKeyHandingCommand(this);
+
 		}
+
+
+		//public void HandingViewGetData()
+		//{
+		//	var query =
+		//	from keyhanding in dataEntities.key_handing
+		//	select new { keyhanding.id, keyhanding.id_worker, keyhanding.id_key, keyhanding.handing_date, keyhanding.return_date };
+		//	handingView.key_handingListView.ItemsSource = query.ToList();
+
+		//}
 	}
 }

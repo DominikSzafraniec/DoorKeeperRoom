@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using DoorKeeperRoom.ViewModels;
+using System.Data.Entity;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -27,12 +29,14 @@ namespace DoorKeeperRoom.Views
 
 		private void key_handingListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
+			/*
 			var selectedRecord = (Models.key_handing)key_handingListView.SelectedItem;
 			idTextBoxEdit.Text = selectedRecord.id.ToString();
 			id_keyTextBoxEdit.Text = selectedRecord.id_key.ToString();
 			id_workerTextBoxEdit.Text = selectedRecord.id_worker.ToString();
 			handing_dateDatePickerEdit.SelectedDate=selectedRecord.handing_date;
 			return_dateDatePickerEdit.SelectedDate = selectedRecord.return_date;
+			*/
 		}
 
 
