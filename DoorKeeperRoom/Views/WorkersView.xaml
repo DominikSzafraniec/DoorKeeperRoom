@@ -59,14 +59,14 @@
                     </Grid>
                 </Border>
                 <StackPanel Orientation="Horizontal">
-                    <Button Margin="5,10,10,10"  Content="Usuń pracownika" HorizontalAlignment="Center" Command="{Binding ElementName=_worker,Path=DataContext.DeleteWorkerRecord}" CommandParameter="delete" Width="122"/>
-                    <Button Margin="0,10,10,10"  Content="Zapisz zmiany" HorizontalAlignment="Center" Command="{Binding ElementName=_worker,Path=DataContext.UpdateWorkerCommand}" CommandParameter="update" Width="122"/>
+                    <Button Margin="5,10,10,10"  Content="Usuń pracownika" HorizontalAlignment="Center" Command="{Binding DataContext.DeleteWorkerRecord, ElementName=_worker}" CommandParameter="delete" Width="122"/>
+                    <Button Margin="0,10,10,10"  Content="Zapisz zmiany" HorizontalAlignment="Center" Command="{Binding DataContext.UpdateWorkerCommand, ElementName=_worker}" CommandParameter="update" Width="122"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
         <Label Margin="0,10,0,0" FontSize="15" HorizontalAlignment="Left" Content="Dodawanie pracownika"/>
         <Border BorderBrush="Gray" BorderThickness="1">
-            <StackPanel Orientation="Horizontal" Margin="0,0,403,0">
+            <StackPanel Orientation="Horizontal" Margin="0,0,370,0">
                 <Grid x:Name="grid2" DataContext="{StaticResource workersViewSource}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="219">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -88,7 +88,7 @@
                     <Label Content="Dział:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
                     <TextBox MaxLength="40" x:Name="departmentTextBoxAdd" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="" VerticalAlignment="Center" Width="120"/>
                 </Grid>
-                <StackPanel Orientation="Vertical" Width="178">
+                <StackPanel Orientation="Vertical" Width="198">
                     <Button Margin="10,10,10,10"  Content="Dodaj pracownika" HorizontalAlignment="Center" Command="{Binding ElementName=_worker, Path=DataContext.AddWorkerRecord}" CommandParameter="add" Width="122" Height="20"/>
                     <Button Margin="10,10,10,10"  Content="Wyczyść formularz" HorizontalAlignment="Center" Command="{Binding ElementName=_worker, Path=DataContext.ClearWorkerRecord}" CommandParameter="clear" Width="122" Height="20"/>
                 </StackPanel>

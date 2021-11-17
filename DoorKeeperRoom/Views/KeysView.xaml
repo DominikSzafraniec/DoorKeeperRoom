@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:DoorKeeperRoom.Views"
         xmlns:Models="clr-namespace:DoorKeeperRoom.Models" x:Class="DoorKeeperRoom.Views.KeysView"
         mc:Ignorable="d"
+        Name="_key"
         d:DesignHeight="450" d:DesignWidth="800" Background="white" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <CollectionViewSource x:Key="keysViewSource" d:DesignSource="{d:DesignInstance {x:Type Models:keys}, CreateList=True}"/>
@@ -13,14 +14,62 @@
     <StackPanel DataContext="{StaticResource keysViewSource}">
         <Label FontSize="20" HorizontalAlignment="Center" Content="Panel zarządzania kluczami"/>
         <StackPanel Orientation="Horizontal">
-            <Label FontSize="15" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Content="Lista kluczy" Width="337"/>
-            <Label FontSize="15" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Content="Okno edycji wybranego klucza" Width="309"/>
+            <Label FontSize="15" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Content="Lista pomieszczeń" Width="375"/>
+            <Label FontSize="15" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Content="Okno edycji wybranego pomieszczenia" Width="403"/>
         </StackPanel>
-        <DataGrid CanUserAddRows="false" x:Name="keysDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Height="214" ItemsSource="{Binding}" Margin="26,0,462,0" RowDetailsVisibilityMode="VisibleWhenSelected">
-            <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" x:Name="id_keyColumn" Binding="{Binding id_key}" Header="Numer Klucza" Width="100"/>
-                <DataGridTextColumn IsReadOnly="True" x:Name="room_nameColumn" Binding="{Binding room_name}" Header="Nazwa Pomieszczenia" Width="200"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel Orientation="Horizontal" Height="185">
+            <DataGrid CanUserAddRows="false" x:Name="keysDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="30,0,0,0" RowDetailsVisibilityMode="VisibleWhenSelected" Width="330">
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" x:Name="id_keyColumn" Binding="{Binding id_key}" Header="Numer Klucza" Width="100"/>
+                    <DataGridTextColumn IsReadOnly="True" x:Name="room_nameColumn" Binding="{Binding room_name}" Header="Nazwa Pomieszczenia" Width="220"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Vertical" Width="439">
+                <Border BorderBrush="Gray" BorderThickness="1" Margin="20,0,35,0">
+                    <Grid Margin="9,20,7,0" x:Name="grid1" HorizontalAlignment="Center" VerticalAlignment="Top" Height="69" Width="398">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="147"/>
+                            <ColumnDefinition Width="Auto" MinWidth="251"/>
+                            <ColumnDefinition Width="0*"/>
+                            <ColumnDefinition Width="0*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Numer klucza:" Grid.Column="0" HorizontalAlignment="Left" Margin="18,5,0,2" Grid.Row="0" VerticalAlignment="Center" Height="26" Width="85"/>
+                        <TextBox IsReadOnly="True" x:Name="id_keyTextBoxEdit" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="4,5,0,5" Grid.Row="0" Text="{Binding id_key, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="100"/>
+                        <Label Content="Nazwa pomieszczenia:" Grid.Column="0" HorizontalAlignment="Left" Margin="18,3,0,7" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="128"/>
+                        <TextBox x:Name="room_nameTextBoxEdit" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="4,5,0,7" Grid.Row="1" Text="{Binding room_name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="216"/>
+                    </Grid>
+                </Border>
+                <StackPanel Margin="71,0,35,0" Orientation="Horizontal">
+                    <Button Margin="5,10,10,10"  Content="Usuń Klucz" HorizontalAlignment="Center" Command="{Binding DataContext.DeleteKeyRecord, ElementName=_key}" CommandParameter="delete" Width="122"/>
+                    <Button Margin="0,10,10,10"  Content="Zapisz zmiany" HorizontalAlignment="Center" Command="{Binding DataContext.UpdateKeyCommand, ElementName=_key}" CommandParameter="update" Width="122"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <Label Margin="0,10,0,0" FontSize="15" HorizontalAlignment="Left" Content="Dodawanie pomieszczenia"/>
+        <Border BorderBrush="Gray" BorderThickness="1">
+            <StackPanel Orientation="Horizontal" Margin="0,0,-1,0">
+                <Grid x:Name="grid2" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Nazwa Pomieszczenia:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                    <TextBox x:Name="room_nameTextBoxAdd" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="" VerticalAlignment="Center" Width="120"/>
+                </Grid>
+                <StackPanel Orientation="Vertical" Width="178">
+                    <Button Margin="10,0,10,10"  Content="Dodaj pomieszczenie" HorizontalAlignment="Center" Command="{Binding DataContext.AddKeyRecord, ElementName=_key}" CommandParameter="add" Width="122" Height="20"/>
+                    <Button Margin="10,0,10,10"  Content="Wyczyść formularz" HorizontalAlignment="Center" Command="{Binding DataContext.ClearKeyRecord, ElementName=_key}" CommandParameter="clear" Width="122" Height="20"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
     </StackPanel>
 </UserControl>
