@@ -27,6 +27,7 @@ namespace DoorKeeperRoom.ViewModels
 		public MainViewModel()
 		{
 			UpdateViewCommand = new UpdateViewCommand(this);
+			SelectedViewModel = new KeyDisposeViewModel();
 		}
 	}
 }

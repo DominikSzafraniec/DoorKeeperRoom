@@ -11,98 +11,55 @@
     <UserControl.Resources>
         <CollectionViewSource x:Key="key_handingViewSource" d:DesignSource="{d:DesignInstance {x:Type Models:key_handing}, CreateList=True}"/>
     </UserControl.Resources>
-    <StackPanel Margin="0,0,0,10">
-        <Label FontSize="25" HorizontalAlignment="Center" Content="Panel wydawania kluczy"/>
+    <StackPanel Margin="0,0,0,10" DataContext="{StaticResource key_handingViewSource}">
+        <Label FontSize="25" HorizontalAlignment="Center" Content="Panel historii wydawanych kluczy"/>
         <StackPanel Orientation="Horizontal">
-            <Label FontSize="15" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Content="Lista wydanych kluczy" Width="502"/>
-            <Label FontSize="15" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Content="Okno edycji wydanego klucza" Width="297"/>
+            <Label FontSize="15" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Content="Lista wydanych kluczy" Width="409"/>
+            <Label FontSize="15" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Content="Okno edycji wydanego klucza" Width="390"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <ListView x:Name="key_handingListView" Height="223" Margin="10,0,20,0" SelectionMode="Single" ItemsSource="{Binding}" DataContext="{StaticResource key_handingViewSource}" SelectionChanged="key_handingListView_SelectionChanged" Width="494" BorderThickness="1" BorderBrush="Gray">
-                <ListView.ItemContainerStyle>
-                    <Style>
-                        <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn x:Name="idColumn" Header="Lp." Width="40">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBox IsEnabled="False" Margin="-6,-1" Text="{Binding id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn x:Name="id_keyColumn" Header="Numer klucza" Width="85">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBox IsEnabled="False" Margin="-6,-1" Text="{Binding id_key, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn x:Name="id_workerColumn" Header="Numer pracownika" Width="110">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBox IsEnabled="False" Name="id_worker" Margin="-6,-1" Text="{Binding id_worker, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn x:Name="handing_dateColumn" Header="Data wydania" Width="80">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <!-- <DatePicker  Margin="0,-1,0,-1" SelectedDate="{Binding handing_date, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" SelectedDateFormat="Short"/> -->
-                                    <TextBox IsEnabled="False" Text="{Binding handing_date, StringFormat='{}{0:MM/dd/yyyy a\\t h:mm tt}'}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn x:Name="return_dateColumn" Header="Data zwrotu" Width="80">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <!--<DatePicker Margin="-6,-1" SelectedDate="{Binding return_date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>-->
-                                    <TextBox IsEnabled="False" Text="{Binding return_date, StringFormat='{}{0:MM/dd/yyyy a\\t h:mm tt}'}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button  Margin="1 1 1 1"  Content="Usuń" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView},Path=DataContext.DeleteKHCommand}" CommandParameter="{Binding}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Border BorderThickness="1" BorderBrush="Gray">
-                <Grid  x:Name="grid1" HorizontalAlignment="Left" VerticalAlignment="Top" DataContext="{StaticResource key_handingViewSource}" Width="265" Height="223">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" MinWidth="108"/>
-                        <ColumnDefinition Width="Auto" MinWidth="133"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" MinHeight="39"/>
-                        <RowDefinition Height="Auto" MinHeight="38"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto" MinHeight="38"/>
-                        <RowDefinition Height="Auto" MinHeight="38"/>
-                    </Grid.RowDefinitions>
-                    <Label Content="id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,8,0,4" Grid.Row="0" VerticalAlignment="Center"  Width="23" Height="26"/>
-                    <TextBox IsEnabled="False"  x:Name="idTextBoxEdit" Grid.Column="1" HorizontalAlignment="Left" Margin="3,12,0,8" Grid.Row="0" Text="{Binding id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="18"/>
-                    <Label Content="id key:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,8" Grid.Row="1" VerticalAlignment="Center" Width="44" Height="26"/>
-                    <TextBox x:Name="id_keyTextBoxEdit" Grid.Column="1" HorizontalAlignment="Left" Margin="3,8,0,12" Grid.Row="1" Text="{Binding id_key, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="18"/>
-                    <Label Content="id worker:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,8,0,4" Grid.Row="2" VerticalAlignment="Center"  Width="62" Height="26"/>
-                    <TextBox x:Name="id_workerTextBoxEdit" Grid.Column="1" HorizontalAlignment="Left"  Margin="3,12,0,8" Grid.Row="2" Text="{Binding id_worker, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="18"/>
-                    <Label Content="handing date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,9" Grid.Row="3" VerticalAlignment="Center" Width="83" Height="26"/>
-                    <DatePicker x:Name="handing_dateDatePickerEdit" Grid.Column="1" HorizontalAlignment="Left" Margin="3,4,0,11" Grid.Row="3" SelectedDate="{Binding handing_date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="24"/>
-                    <Label Content="return date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,8" Grid.Row="4" VerticalAlignment="Center"  Width="72" Height="26"/>
-                    <DatePicker x:Name="return_dateDatePickerEdit" Grid.Column="1" HorizontalAlignment="Left" Margin="3,4,0,10" Grid.Row="4" SelectedDate="{Binding return_date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="24" Width="120"/>
-                    <Label Content="" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,8" Grid.Row="5" VerticalAlignment="Center"  Width="72" Height="26"/>
-                    <Button Margin="1,1,0,10"  Content="Zapisz zmiany" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Grid}, Path=UpdateViewModel}" CommandParameter="1" Width="122"/>
-                </Grid>
-            </Border>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,0" Width="780">
+            <DataGrid x:Name="key_handingDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Height="222" ItemsSource="{Binding}" Margin="10,0,10,0" RowDetailsVisibilityMode="VisibleWhenSelected" Width="390">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="idColumn1" Binding="{Binding id}" Header="Lp." Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="id_keyColumn1" Binding="{Binding id_key}" Header="Numer klucza" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="id_workerColumn1" Binding="{Binding id_worker}" Header="Numer pracownika" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="handingDateColumn1" Binding="{Binding handing_date, StringFormat='{}{0:MM/dd/yyyy a\\t h:mm tt}'}" Header="Data Wydania" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="returnDateColumn1" Binding="{Binding return_date, StringFormat='{}{0:MM/dd/yyyy a\\t h:mm tt}'}" Header="Data Zwrotu" Width="SizeToHeader"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Vertical" Width="370">
+                <Border BorderThickness="1" BorderBrush="Gray" Height="198">
+                    <Grid  x:Name="grid1" HorizontalAlignment="Center" VerticalAlignment="Top" DataContext="{StaticResource key_handingViewSource}" Width="265" Height="190">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="108"/>
+                            <ColumnDefinition Width="Auto" MinWidth="133"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" MinHeight="39"/>
+                            <RowDefinition Height="Auto" MinHeight="38"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+
+                        </Grid.RowDefinitions>
+                        <Label Content="id:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="0" VerticalAlignment="Center"  Width="23" Height="26"/>
+                        <TextBox IsEnabled="False"  x:Name="idTextBoxEdit" Grid.Column="1" HorizontalAlignment="Left" Margin="3,10,0,11" Grid.Row="0" Text="{Binding id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="18"/>
+                        <Label Content="id key:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,8" Grid.Row="1" VerticalAlignment="Center" Width="44" Height="26"/>
+                        <TextBox x:Name="id_keyTextBoxEdit" Grid.Column="1" HorizontalAlignment="Left" Margin="3,8,0,12" Grid.Row="1" Text="{Binding id_key, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="18"/>
+                        <Label Content="id worker:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,8,0,4" Grid.Row="2" VerticalAlignment="Center"  Width="62" Height="26"/>
+                        <TextBox x:Name="id_workerTextBoxEdit" Grid.Column="1" HorizontalAlignment="Left"  Margin="3,12,0,8" Grid.Row="2" Text="{Binding id_worker, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="18"/>
+                        <Label Content="handing date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,9" Grid.Row="3" VerticalAlignment="Center" Width="83" Height="26"/>
+                        <DatePicker x:Name="handing_dateDatePickerEdit" Grid.Column="1" HorizontalAlignment="Left" Margin="3,4,0,11" Grid.Row="3" SelectedDate="{Binding handing_date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="24"/>
+                        <Label Content="return date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,8" Grid.Row="4" VerticalAlignment="Center"  Width="72" Height="26"/>
+                        <DatePicker x:Name="return_dateDatePickerEdit" Grid.Column="1" HorizontalAlignment="Left" Margin="3,5,0,7" Grid.Row="4" SelectedDate="{Binding return_date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="24" Width="120"/>
+                    </Grid>
+                </Border>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Height="37">
+                    <Button Margin="0,0,0,10"  Content="Usuń rekord" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" Command="{Binding DataContext.DeleteKeyHundingCommand, ElementName=_khView}" CommandParameter="delete" Width="128" Height="27" VerticalAlignment="Bottom"/>
+                    <Button Margin="20,0,0,10"  Content="Zapisz zmiany" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" Command="{Binding DataContext.UpdateKeyHandingCommand, ElementName=_khView}" CommandParameter="save" Width="125"/>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
-        <Label FontSize="15" HorizontalAlignment="Left" Content="Wydawanie kluczy"/>
+
     </StackPanel>
 </UserControl>

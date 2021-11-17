@@ -39,6 +39,10 @@ namespace DoorKeeperRoom.Commands
 			{
 				viewModel.SelectedViewModel = new KeysViewModel();
 			}
+			else if (parameter.ToString() == "Dispose")
+			{
+				viewModel.SelectedViewModel = new KeyDisposeViewModel();
+			}
 		}
 	}
 }

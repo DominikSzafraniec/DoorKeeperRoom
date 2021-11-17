@@ -15,5 +15,8 @@
         <DataTemplate DataType="{x:Type viewmodels:WorkersViewModel}">
             <views:WorkersView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:KeyDisposeViewModel}">
+            <views:KeyDisposeView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

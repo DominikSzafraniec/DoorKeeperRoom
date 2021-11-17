@@ -22,21 +22,5 @@ namespace DoorKeeperRoom.ViewModels
 				OnPropertyChanged(nameof(SelectedViewModel));
 			}
 		}
-
-		public ICommand UpdateWorkerRecordCommand { get; set; }
-
-
-		public WorkersViewModel()
-		{
-			UpdateWorkerRecordCommand = new UpdateWorkerRecordCommand(this);
-		}
-
-		//private DelegateCommand<workers> _updateWorkerCommand;
-		//public DelegateCommand<workers> UpdateWorkerCommand =>
-		//	_updateWorkerCommand ?? (_updateWorkerCommand = new DelegateCommand<workers>(ExecuteUpdateWorkerCommand));
-		//void ExecuteUpdateWorkerCommand(workers workers)
-		//{
-		//	//dataEntities.SaveChanges();
-		//}
 	}
 }

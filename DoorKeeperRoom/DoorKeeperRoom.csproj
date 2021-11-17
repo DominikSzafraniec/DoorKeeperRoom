@@ -98,9 +98,13 @@
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\HandingViewModel.cs" />
+    <Compile Include="ViewModels\KeyDisposeViewModel.cs" />
     <Compile Include="ViewModels\KeysViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\WorkersViewModel.cs" />
+    <Compile Include="Views\KeyDisposeView.xaml.cs">
+      <DependentUpon>KeyDisposeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HandingView.xaml.cs">
       <DependentUpon>HandingView.xaml</DependentUpon>
     </Compile>
@@ -125,6 +129,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\KeyDisposeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\HandingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

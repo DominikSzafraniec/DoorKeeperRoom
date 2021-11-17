@@ -38,7 +38,5 @@ namespace DoorKeeperRoom.Views
 			return_dateDatePickerEdit.SelectedDate = selectedRecord.return_date;
 			*/
 		}
-
-
 	}
 }
