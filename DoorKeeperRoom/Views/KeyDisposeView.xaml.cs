@@ -70,7 +70,7 @@ namespace DoorKeeperRoom.Views
 							{
 								try
 								{
-									var id = Int32.Parse(dialog.ResponseText);
+									var id = int.Parse(dialog.ResponseText);
 									var wk = wkAll.Where(w => w.id_worker == id);
 									if (wk.Any())
 									{
@@ -143,10 +143,13 @@ namespace DoorKeeperRoom.Views
 
 
 			}
-			if(reqEmpty)
-				MessageBox.Show(mess,"Wydawanie klucza",MessageBoxButton.OK, MessageBoxImage.Warning);
+			if (reqEmpty)
+				MessageBox.Show(mess, "Wydawanie klucza", MessageBoxButton.OK, MessageBoxImage.Warning);
 			else
+			{
 				MessageBox.Show("Wydano klucz pracownikowi", "Wydawanie klucza", MessageBoxButton.OK, MessageBoxImage.Warning);
+				ClearFormCommand(s);
+			}
 		}
 
 		private DelegateCommand<string> _receiveKey;
@@ -201,7 +204,7 @@ namespace DoorKeeperRoom.Views
 									else
 									{
 										reqEmpty = true;
-										mess = "Nie ma pracowanika o imieniu " + workerNameTextBox.Text + " nazwisku " + workerLastnameTextBox + " i numerze pracownika " + dialog.ResponseText + "!";
+										mess = "Nie ma pracowanika o imieniu " + workerNameTextBox.Text + " nazwisku " + workerLastnameTextBox.Text + " i numerze pracownika " + dialog.ResponseText + "!";
 									}
 								}
 								catch (Exception e)
@@ -231,7 +234,7 @@ namespace DoorKeeperRoom.Views
 				{
 					try
 					{
-						var idk = Int32.Parse(keyIdTextBox.Text);
+						var idk = int.Parse(keyIdTextBox.Text);
 						var kf = dataEntities.keys.Find(idk);
 						if (kf != null)
 						{
@@ -240,6 +243,7 @@ namespace DoorKeeperRoom.Views
 							{
 								var idkk = int.Parse(workerIdTextBox.Text);
 								var wkKey = keyAv.Where(k => k.id_worker == idkk);
+
 								if (wkKey.Any())
 								{
 									wkKey.First().return_date = DateTime.Now;
@@ -247,7 +251,8 @@ namespace DoorKeeperRoom.Views
 								}
 								else
 								{
-									mess = "Klucz jest już pobrany przez pracownika nr:" + wkKey.First().id_worker + "\n tylko on może zdać klucz";
+									reqEmpty = true;
+									mess = "Klucz jest już pobrany przez pracownika nr:" + keyAv.First().id_worker + "\n tylko on może zdać klucz";
 								}
 							}
 							else
@@ -257,12 +262,17 @@ namespace DoorKeeperRoom.Views
 
 							}
 						}
+						else
+						{
+							reqEmpty = true;
+							mess = "Nie ma klucza o takim numerze!";
+						}
 					}
 					catch (Exception e)
 					{
 						//Console.WriteLine(e.Message);
 						reqEmpty = true;
-						mess = "Wprowadź numer klucza składający sie wyłącznie z cyfr!";
+						mess = "Wprowadź numer klucza składający sie wyłącznie z cyfr!\n";
 					}
 				}
 				else
@@ -278,8 +288,11 @@ namespace DoorKeeperRoom.Views
 			}
 			if (reqEmpty)
 				MessageBox.Show(mess, "Odbieranie klucza", MessageBoxButton.OK, MessageBoxImage.Warning);
-			else
+			else {
 				MessageBox.Show("Odebrano klucz od pracownika", "Odbieranie klucza", MessageBoxButton.OK, MessageBoxImage.Warning);
+				ClearFormCommand(s);
+			}
+
 
 		}
 
