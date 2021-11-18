@@ -10,7 +10,7 @@
         mc:Ignorable="d" d:DesignWidth="800" Background="White" Loaded="UserControl_Loaded" Height="600">
     <UserControl.Resources>
         <CollectionViewSource x:Key="key_handingViewSource" d:DesignSource="{d:DesignInstance {x:Type Models:key_handing}, CreateList=True}"/>
-        <CollectionViewSource x:Key="key_handingAll" d:DesignSource="{d:DesignInstance {x:Type Models:key_handing}, CreateList=True}"/>
+        <CollectionViewSource x:Key="key_handingAll" />
     </UserControl.Resources>
     <StackPanel Margin="0,0,0,10" DataContext="{StaticResource key_handingViewSource}">
         <Label FontSize="25" HorizontalAlignment="Center" Content="Panel historii wydawanych kluczy"/>
@@ -61,16 +61,16 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <DataGrid Height="144" DataContext="{StaticResource key_handingAll}">
+        <DataGrid x:Name="joinedData" Height="215" DataContext="{StaticResource key_handingAll}" Loaded="joinedData_Loaded">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="idHk" Header="Lp." Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="id_keyHK" Header="Numer klucza" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="room_nameHK" Header="Nazwa pomieszczenia" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="id_workerHK" Header="Numer pracownika" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="nameWorkerHK" Header="Imię pracownika" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="lastNameHK" Header="Nazwisko pracownika" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="handingDateHK" Header="Data Wydania" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="returnDateHK" Header="Data Zwrotu" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="idHk" Header="Lp." Binding="{Binding id}" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="id_keyHK" Header="Numer klucza" Binding="{Binding id_key}"  Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="room_nameHK" Header="Nazwa pomieszczenia" Binding="{Binding roomname}" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="id_workerHK" Header="Numer pracownika" Binding="{Binding id_worker}" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="nameWorkerHK" Header="Imię pracownika" Binding="{Binding name}" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="lastNameHK" Header="Nazwisko pracownika" Binding="{Binding lastname}" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="handingDateHK" Header="Data Wydania" Binding="{Binding handingdate, StringFormat='{}{0:MM/dd/yyyy}'}" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="returnDateHK" Header="Data Zwrotu" Binding="{Binding returndate, StringFormat='{}{0:MM/dd/yyyy}'}" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
 
