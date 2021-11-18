@@ -45,7 +45,7 @@
                 </Border>
                 <StackPanel Margin="71,0,35,0" Orientation="Horizontal">
                     <Button Margin="5,10,10,10"  Content="Usuń Klucz" HorizontalAlignment="Center" Command="{Binding DataContext.DeleteKeyRecord, ElementName=_key}" CommandParameter="delete" Width="122"/>
-                    <Button Margin="0,10,10,10"  Content="Zapisz zmiany" HorizontalAlignment="Center" Command="{Binding DataContext.UpdateKeyCommand, ElementName=_key}" CommandParameter="update" Width="122"/>
+                    <Button Margin="0,10,10,10"  Content="Zapisz zmiany" HorizontalAlignment="Center" Command="{Binding DataContext.UpdateKeyRecord, ElementName=_key}" CommandParameter="update" Width="122"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

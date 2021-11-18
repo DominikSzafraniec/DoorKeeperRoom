@@ -74,7 +74,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\UpdateViewCommand.cs" />
-    <Compile Include="Commands\UpdateWorkerRecordCommand.cs" />
     <Compile Include="Models\DoorKeepersRoomModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -102,6 +101,9 @@
     <Compile Include="ViewModels\KeysViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\WorkersViewModel.cs" />
+    <Compile Include="Views\GetWorkerId.xaml.cs">
+      <DependentUpon>GetWorkerId.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\KeyDisposeView.xaml.cs">
       <DependentUpon>KeyDisposeView.xaml</DependentUpon>
     </Compile>
@@ -129,6 +131,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\GetWorkerId.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\KeyDisposeView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

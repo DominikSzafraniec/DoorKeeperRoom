@@ -10,6 +10,7 @@
         mc:Ignorable="d" d:DesignWidth="800" Background="White" Loaded="UserControl_Loaded" Height="600">
     <UserControl.Resources>
         <CollectionViewSource x:Key="key_handingViewSource" d:DesignSource="{d:DesignInstance {x:Type Models:key_handing}, CreateList=True}"/>
+        <CollectionViewSource x:Key="key_handingAll" d:DesignSource="{d:DesignInstance {x:Type Models:key_handing}, CreateList=True}"/>
     </UserControl.Resources>
     <StackPanel Margin="0,0,0,10" DataContext="{StaticResource key_handingViewSource}">
         <Label FontSize="25" HorizontalAlignment="Center" Content="Panel historii wydawanych kluczy"/>
@@ -23,16 +24,16 @@
                     <DataGridTextColumn x:Name="idColumn1" Binding="{Binding id}" Header="Lp." Width="SizeToHeader"/>
                     <DataGridTextColumn x:Name="id_keyColumn1" Binding="{Binding id_key}" Header="Numer klucza" Width="SizeToHeader"/>
                     <DataGridTextColumn x:Name="id_workerColumn1" Binding="{Binding id_worker}" Header="Numer pracownika" Width="SizeToHeader"/>
-                    <DataGridTextColumn x:Name="handingDateColumn1" Binding="{Binding handing_date, StringFormat='{}{0:MM/dd/yyyy a\\t h:mm tt}'}" Header="Data Wydania" Width="SizeToHeader"/>
-                    <DataGridTextColumn x:Name="returnDateColumn1" Binding="{Binding return_date, StringFormat='{}{0:MM/dd/yyyy a\\t h:mm tt}'}" Header="Data Zwrotu" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="handingDateColumn1" Binding="{Binding handing_date, StringFormat='{}{0:MM/dd/yyyy}'}" Header="Data Wydania" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="returnDateColumn1" Binding="{Binding return_date, StringFormat='{}{0:MM/dd/yyyy}'}" Header="Data Zwrotu" Width="SizeToHeader"/>
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Orientation="Vertical" Width="370">
                 <Border BorderThickness="1" BorderBrush="Gray" Height="198">
-                    <Grid  x:Name="grid1" HorizontalAlignment="Center" VerticalAlignment="Top" DataContext="{StaticResource key_handingViewSource}" Width="265" Height="190">
+                    <Grid  x:Name="grid1" HorizontalAlignment="Center" VerticalAlignment="Top" DataContext="{StaticResource key_handingViewSource}" Width="276" Height="190" Margin="41,0,51,0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" MinWidth="108"/>
-                            <ColumnDefinition Width="Auto" MinWidth="133"/>
+                            <ColumnDefinition Width="Auto" MinWidth="123"/>
+                            <ColumnDefinition Width="Auto" MinWidth="140"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" MinHeight="39"/>
@@ -42,24 +43,36 @@
                             <RowDefinition/>
 
                         </Grid.RowDefinitions>
-                        <Label Content="id:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="0" VerticalAlignment="Center"  Width="23" Height="26"/>
+                        <Label Content="Lp." Grid.Column="0" HorizontalAlignment="Left" Margin="0,6,0,7" Grid.Row="0" VerticalAlignment="Center"  Width="42" Height="26"/>
                         <TextBox IsEnabled="False"  x:Name="idTextBoxEdit" Grid.Column="1" HorizontalAlignment="Left" Margin="3,10,0,11" Grid.Row="0" Text="{Binding id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="18"/>
-                        <Label Content="id key:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,8" Grid.Row="1" VerticalAlignment="Center" Width="44" Height="26"/>
+                        <Label Content="Numer klucza:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,8" Grid.Row="1" VerticalAlignment="Center" Width="96" Height="26"/>
                         <TextBox x:Name="id_keyTextBoxEdit" Grid.Column="1" HorizontalAlignment="Left" Margin="3,8,0,12" Grid.Row="1" Text="{Binding id_key, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="18"/>
-                        <Label Content="id worker:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,8,0,4" Grid.Row="2" VerticalAlignment="Center"  Width="62" Height="26"/>
+                        <Label Content="Numer pracownika:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,8,0,4" Grid.Row="2" VerticalAlignment="Center"  Width="114" Height="26"/>
                         <TextBox x:Name="id_workerTextBoxEdit" Grid.Column="1" HorizontalAlignment="Left"  Margin="3,12,0,8" Grid.Row="2" Text="{Binding id_worker, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="18"/>
-                        <Label Content="handing date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,9" Grid.Row="3" VerticalAlignment="Center" Width="83" Height="26"/>
+                        <Label Content="Data wydania:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,9" Grid.Row="3" VerticalAlignment="Center" Width="83" Height="26"/>
                         <DatePicker x:Name="handing_dateDatePickerEdit" Grid.Column="1" HorizontalAlignment="Left" Margin="3,4,0,11" Grid.Row="3" SelectedDate="{Binding handing_date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="24"/>
-                        <Label Content="return date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,8" Grid.Row="4" VerticalAlignment="Center"  Width="72" Height="26"/>
+                        <Label Content="Data zwrotu:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,7" Grid.Row="4" VerticalAlignment="Center"  Width="111" Height="26"/>
                         <DatePicker x:Name="return_dateDatePickerEdit" Grid.Column="1" HorizontalAlignment="Left" Margin="3,5,0,7" Grid.Row="4" SelectedDate="{Binding return_date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="24" Width="120"/>
                     </Grid>
                 </Border>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Height="37">
-                    <Button Margin="0,0,0,10"  Content="Usuń rekord" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" Command="{Binding DataContext.DeleteKeyHundingCommand, ElementName=_khView}" CommandParameter="delete" Width="128" Height="27" VerticalAlignment="Bottom"/>
-                    <Button Margin="20,0,0,10"  Content="Zapisz zmiany" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" Command="{Binding DataContext.UpdateKeyHandingCommand, ElementName=_khView}" CommandParameter="save" Width="125"/>
+                    <Button Margin="0,0,0,10"  Content="Usuń rekord" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" Command="{Binding DataContext.DeleteKeyHandingRecord, ElementName=_khView}" CommandParameter="delete" Width="128" Height="27" VerticalAlignment="Bottom"/>
+                    <Button Margin="20,0,0,10"  Content="Zapisz zmiany" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" Command="{Binding DataContext.UpdateKeyHandingRecord, ElementName=_khView}" CommandParameter="save" Width="125"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
+        <DataGrid Height="144" DataContext="{StaticResource key_handingAll}">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idHk" Header="Lp." Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="id_keyHK" Header="Numer klucza" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="room_nameHK" Header="Nazwa pomieszczenia" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="id_workerHK" Header="Numer pracownika" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="nameWorkerHK" Header="Imię pracownika" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="lastNameHK" Header="Nazwisko pracownika" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="handingDateHK" Header="Data Wydania" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="returnDateHK" Header="Data Zwrotu" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </StackPanel>
 </UserControl>

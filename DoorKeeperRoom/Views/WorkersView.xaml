@@ -60,7 +60,7 @@
                 </Border>
                 <StackPanel Orientation="Horizontal">
                     <Button Margin="5,10,10,10"  Content="Usuń pracownika" HorizontalAlignment="Center" Command="{Binding DataContext.DeleteWorkerRecord, ElementName=_worker}" CommandParameter="delete" Width="122"/>
-                    <Button Margin="0,10,10,10"  Content="Zapisz zmiany" HorizontalAlignment="Center" Command="{Binding DataContext.UpdateWorkerCommand, ElementName=_worker}" CommandParameter="update" Width="122"/>
+                    <Button Margin="0,10,10,10"  Content="Zapisz zmiany" HorizontalAlignment="Center" Command="{Binding DataContext.UpdateWorkerRecord, ElementName=_worker}" CommandParameter="update" Width="122"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
